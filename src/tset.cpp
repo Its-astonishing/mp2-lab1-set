@@ -122,10 +122,23 @@ TSet TSet::operator~(void) // дополнение
 
 istream &operator>>(istream &istr, TSet &s) // ввод
 {
+    string str;
+    istr >> str;
+    int i = str.size() - 1;
+    for (auto c : str)
+    {
+        if (c == '1')
+            s.BitField.SetBit(i);
+        else
+            s.BitField.ClrBit(i);
+        i--;
+    }
     return istr;
 }
 
 ostream& operator<<(ostream &ostr, const TSet &s) // вывод
 {
+    for (int i = s.MaxPower - 1; i >= 0; i--)
+        ostr << s.BitField.GetBit(i);
     return ostr;
 }

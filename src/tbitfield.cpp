@@ -4,7 +4,6 @@
 //   Переработано для Microsoft Visual Studio 2008 Сысоевым А.В. (19.04.2015)
 //
 // Битовое поле
-//TODO : MEMINDEX, GETMEMMASK, SETBIT I TD
 
 #include "tbitfield.h"
 
@@ -149,10 +148,23 @@ TBitField TBitField::operator~(void) // отрицание
 
 istream &operator>>(istream &istr, TBitField &bf) // ввод
 {
+    string str;
+    istr >> str;
+    int i = str.size() - 1;
+    for (auto c : str)
+    {
+        if (c == '1')
+            bf.SetBit(i);
+        else
+            bf.ClrBit(i);
+        i--;
+    }
     return istr;
 }
 
 ostream &operator<<(ostream &ostr, const TBitField &bf) // вывод
 {
+    for (int i = bf.BitLen - 1; i >= 0; i--)
+        ostr << bf.GetBit(i);
     return ostr;
 }
