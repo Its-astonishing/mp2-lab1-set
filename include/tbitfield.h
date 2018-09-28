@@ -9,6 +9,8 @@
 #define __BITFIELD_H__
 
 #include <iostream>
+#include <string>
+#define SIZE (sizeof(TELEM) * 8)
 
 using namespace std;
 
